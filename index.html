@@ -53,6 +53,11 @@
             margin-top: 20px;
             display: none; /* Masqué par défaut */
         }
+        c {
+            font-size: 10px;
+            color: #555;
+            margin-top: 40px;
+        }
     </style>
 </head>
 <body>
@@ -61,6 +66,7 @@
     <button onclick="afficherPhrase()">Clique ici pour afficher ton défi</button>
     <button onclick="masquerPhrase()">Masque ton défi</button>
     <p id="phrase"></p>
+    
 </div>
     <script>
         // Liste des phrases
@@ -128,7 +134,10 @@
             const phraseElement = document.getElementById("phrase");
             phraseElement.style.display = "none"; // Masquer
         }
-        
     </script>
+    <div class="encadre">
+        <c>Je te conseille de prendre en note ton défi pour être sur de ne pas l&#39;oublier!</c>
+    </div>
+    
 </body>
 </html>
