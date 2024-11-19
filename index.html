@@ -41,10 +41,21 @@
             border-radius: 5px;
             cursor: pointer;
             margin: 10px;
+            transition: background-color 0.3s ease;
         }
 
         button:hover {
             background-color: #45a049;
+        }
+
+        /* Style spécifique pour le bouton "Masque ton défi" */
+        #masqueBouton {
+            background-color: #FFD700; /* Jaune doré */
+            color: black; /* Texte noir pour un meilleur contraste */
+        }
+
+        #masqueBouton:hover {
+            background-color: #FFC107; /* Jaune plus clair au survol */
         }
 
         p {
@@ -66,7 +77,7 @@
     <div class="encadre">
         <h1>Jeu du petit secret</h1>
         <button onclick="afficherPhrase()">Clique ici pour afficher ton défi</button>
-        <button onclick="masquerPhrase()">Masque ton défi</button>
+        <button id="masqueBouton" onclick="masquerPhrase()">Masque ton défi</button>
         <p id="phrase"></p>
     </div>
 
@@ -119,26 +130,21 @@
             "",
         ];
 
-        // Copie de travail pour les phrases restantes
-        let phrasesRestantes = [...phrasesOriginales];
+       let phrasesRestantes = [...phrasesOriginales];
 
         function afficherPhrase() {
-            // Vérifier si toutes les phrases ont été utilisées
             if (phrasesRestantes.length === 0) {
                 alert("Toutes les phrases ont été affichées. La liste redémarre !");
-                phrasesRestantes = [...phrasesOriginales]; // Réinitialiser la liste
+                phrasesRestantes = [...phrasesOriginales];
             }
 
-            // Sélectionner un index aléatoire
             const indexAleatoire = Math.floor(Math.random() * phrasesRestantes.length);
             const phraseChoisie = phrasesRestantes[indexAleatoire];
 
-            // Afficher la phrase choisie
             const phraseElement = document.getElementById("phrase");
             phraseElement.textContent = phraseChoisie;
             phraseElement.style.display = "block";
 
-            // Retirer la phrase choisie de la liste
             phrasesRestantes.splice(indexAleatoire, 1);
         }
 
