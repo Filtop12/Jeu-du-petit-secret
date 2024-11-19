@@ -3,135 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeu du petit secret</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <title>Jeu du Petit Secret</title>
     <style>
-        /* Style de base */
+        /* Styles de base */
         body {
-            font-family: 'Roboto', sans-serif;
-            background-image: url('image-bg.jpg');
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f7f7f7;
+            background-image: url('image-bg.jpg'); /* Image de fond */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            color: black;
-            text-align: center;
-            padding: 40px;
+            margin: 0;
+            padding: 10px;
+            color: white;
         }
 
         h1 {
-            font-family: 'Pacifico', cursive;
-            color: #FFD700; /* Jaune doré */
-            font-size: 48px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #333;
+            margin-bottom: 20px;
         }
 
-        /* Style du conteneur */
         .encadre {
-            background-color: rgba(255, 255, 255, 0.95); /* Fond semi-transparent */
-            padding: 30px;
-            margin: 50px auto;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Style des boutons */
         button {
+            display: block;
             background-color: #4CAF50;
             color: white;
             border: none;
-            padding: 12px 24px;
-            font-size: 18px;
-            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 16px;
+            margin: 10px auto;
+            border-radius: 5px;
             cursor: pointer;
-            margin: 10px;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background-color 0.3s ease;
+            max-width: 300px;
         }
 
         button:hover {
             background-color: #45a049;
-            transform: scale(1.05); /* Effet de zoom */
         }
 
-        /* Style spécifique pour le bouton Masque ton défi */
         #masqueBouton {
-            background-color: #FFD700;
+            background-color: #FFD700; /* Jaune doré */
             color: black;
         }
 
         #masqueBouton:hover {
-            background-color: #FFC107;
+            background-color: #FFC107; /* Jaune plus clair */
         }
 
-        /* Style pour les paragraphes */
         p {
             font-size: 20px;
-            line-height: 1.5;
+            color: #333;
             margin-top: 20px;
             display: none;
-            opacity: 0;
             transition: opacity 0.3s ease-in-out;
         }
 
-        p.show {
-            display: block;
-            opacity: 1;
+        .rules {
+            list-style-type: none; /* Supprime les puces */
+            padding: 0;
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+            text-align: left;
         }
 
-        /* Conseils supplémentaires */
-        c {
+        .rules li {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .rules li::before {
+            content: "•";
+            color: #FFD700; /* Jaune doré */
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        footer {
+            margin-top: 30px;
             font-size: 14px;
-            color: #555;
-            margin-top: 20px;
-            font-style: italic;
+            color: #333;
+            text-align: center;
         }
 
-        /* Liste des règles */
-    .rules {
-        list-style-type: none; /* Supprime les puces de la liste */
-        padding: 0; /* Retire le retrait par défaut */
-        margin: 0;
-        font-size: 18px; /* Taille du texte */
-        color: black; /* Couleur blanche pour le texte */
-        text-align: left;
-    }
+        /* Media queries pour mobile */
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
 
-    .rules li {
-        margin: 10px 0; /* Espace entre les éléments de la liste */
-        display: flex;
-        align-items: center;
-    }
+            .encadre {
+                padding: 15px;
+            }
 
-    .rules li::before {
-        content: ""; /* Permet de retirer les symboles par défaut */
-    }
+            button {
+                font-size: 14px;
+                padding: 10px;
+            }
 
-
+            .rules {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
-
+    <!-- Section principale -->
     <div class="encadre">
-        <h1>Jeu du petit secret</h1>
+        <h1>Jeu du Petit Secret</h1>
         <button onclick="afficherPhrase()">Clique ici pour afficher ton défi</button>
         <button id="masqueBouton" onclick="masquerPhrase()">Masque ton défi</button>
         <p id="phrase"></p>
     </div>
 
-<div class="encadre">
-    <h1>Règlements 📜</h1>
-    <ul class="rules">
-        <li>1️⃣ Cliquez sur "Afficher ton défi" pour découvrir votre mission secrète</li>
-        <li>2️⃣ Relevez votre défi pendant le repas sans éveiller les soupçons des autres joueurs</li>
-        <li>3️⃣ Essayez de deviner le défi des autres avant la fin du repas 🎭</li>
-    </ul>
-    <c>
+    <!-- Règles -->
+    <div class="encadre">
+        <h1>Règlements 📜</h1>
+        <ul class="rules">
+            <li>Cliquez sur "Afficher ton défi" pour découvrir votre mission.</li>
+            <li>Pendant le repas, relevez votre défi sans éveiller les soupçons.</li>
+            <li>Essayez de deviner le défi des autres avant la fin du repas !</li>
+        </ul>
+    <footer>
         🔔 Astuce : Prenez des notes pour ne pas oublier votre défi ! 😉
-    </c>
-</div>
+    </footer>
+    </div>
 
-
+    <!-- Scripts -->
     <script>
         const phrasesOriginales = [
             "Fais croire aux autres que tu es enceinte sans le dire explicitement!",
@@ -190,17 +200,18 @@
 
             const indexAleatoire = Math.floor(Math.random() * phrasesRestantes.length);
             const phraseChoisie = phrasesRestantes[indexAleatoire];
+
             const phraseElement = document.getElementById("phrase");
             phraseElement.textContent = phraseChoisie;
-            phraseElement.classList.add('show');
+            phraseElement.style.display = "block";
+
             phrasesRestantes.splice(indexAleatoire, 1);
         }
 
         function masquerPhrase() {
             const phraseElement = document.getElementById("phrase");
-            phraseElement.classList.remove('show');
+            phraseElement.style.display = "none";
         }
     </script>
-
 </body>
 </html>
