@@ -6,13 +6,13 @@
     <title>Jeu du petit secret</title>
     <style>
         .encadre {
-            background-color: white; /* Fond blanc */
-            padding: 20px; /* Espacement interne */
-            margin: 50px auto; /* Centré avec un espace en haut */
-            width: 80%; /* Largeur relative à l'écran */
-            max-width: 600px; /* Largeur maximale */
-            border-radius: 10px; /* Coins arrondis */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour un effet élégant */
+            background-color: white;
+            padding: 20px;
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
 
@@ -21,19 +21,17 @@
             text-align: center;
             background-color: #f7f7f7;
             padding: 20px;
-            /* Ajouter une image de fond */
-            background-image: url('image-bg.jpg'); /* Remplacez 'votre-image.jpg' par le chemin de votre image */
-            background-size: cover; /* Ajuste l'image pour couvrir tout l'écran */
-            background-position: center; /* Centre l'image */
-            background-attachment: fixed; /* L'image reste fixe lors du défilement */
-            color: white; /* Texte en blanc pour une meilleure visibilité */
-            
-            
-
+            background-image: url('image-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
         }
+
         h1 {
             color: #333;
         }
+
         button {
             background-color: #4CAF50;
             color: white;
@@ -44,17 +42,21 @@
             cursor: pointer;
             margin: 10px;
         }
+
         button:hover {
             background-color: #45a049;
         }
+
         p {
             font-size: 20px;
             color: #555;
             margin-top: 20px;
-            display: none; /* Masqué par défaut */
+            display: none;
+            transition: opacity 0.3s ease-in-out;
         }
+
         c {
-            font-size: 10px;
+            font-size: 12px;
             color: #555;
             margin-top: 40px;
         }
@@ -62,15 +64,15 @@
 </head>
 <body>
     <div class="encadre">
-    <h1>Jeu du petit secret</h1>
-    <button onclick="afficherPhrase()">Clique ici pour afficher ton défi</button>
-    <button onclick="masquerPhrase()">Masque ton défi</button>
-    <p id="phrase"></p>
-    
-</div>
+        <h1>Jeu du petit secret</h1>
+        <button onclick="afficherPhrase()">Clique ici pour afficher ton défi</button>
+        <button onclick="masquerPhrase()">Masque ton défi</button>
+        <p id="phrase"></p>
+    </div>
+
     <script>
-        // Liste des phrases
-        const phrases = [
+        // Liste des phrases initiales
+        const phrasesOriginales = [
             "Fais croire aux autres que tu es enceinte sans le dire explicitement!",
             "Mange le repas avec tes doigts et fait comme si de rien n'était",
             "Parle toujours avec la bouche pleine",
@@ -115,29 +117,40 @@
             "Chaque fois que quelqu’un rit, fais semblant de te vexer et demande pourquoi il se moque de toi",
             "Tu es un très grand fan d'animé Japonais, pendant le repas, fait des liens entre la conversation et des animés japonais",
             "",
-            "",
-            "",
         ];
 
-        // Fonction pour afficher une phrase aléatoire
+        // Copie de travail pour les phrases restantes
+        let phrasesRestantes = [...phrasesOriginales];
+
         function afficherPhrase() {
-            // Générer un index aléatoire
-            const indexAleatoire = Math.floor(Math.random() * phrases.length);
-            // Afficher la phrase correspondante
+            // Vérifier si toutes les phrases ont été utilisées
+            if (phrasesRestantes.length === 0) {
+                alert("Toutes les phrases ont été affichées. La liste redémarre !");
+                phrasesRestantes = [...phrasesOriginales]; // Réinitialiser la liste
+            }
+
+            // Sélectionner un index aléatoire
+            const indexAleatoire = Math.floor(Math.random() * phrasesRestantes.length);
+            const phraseChoisie = phrasesRestantes[indexAleatoire];
+
+            // Afficher la phrase choisie
             const phraseElement = document.getElementById("phrase");
-            phraseElement.textContent = phrases[indexAleatoire];
-            phraseElement.style.display = "block"; // Rendre visible
+            phraseElement.textContent = phraseChoisie;
+            phraseElement.style.display = "block";
+
+            // Retirer la phrase choisie de la liste
+            phrasesRestantes.splice(indexAleatoire, 1);
         }
 
-        // Fonction pour masquer la phrase
         function masquerPhrase() {
             const phraseElement = document.getElementById("phrase");
-            phraseElement.style.display = "none"; // Masquer
+            phraseElement.style.display = "none";
         }
     </script>
     <div class="encadre">
-        <c>Je te conseille de prendre en note ton défi pour être sur de ne pas l&#39;oublier!</c>
+        <c>
+            Je te conseille de prendre en note ton défi pour être sûr de ne pas l&#39;oublier!
+        </c>
     </div>
-    
 </body>
 </html>
